@@ -1,12 +1,12 @@
 import React from 'react';
 
-const Controls = ({ onIncrement }) => (
+const Controls = ({ onGoodIncrement, onNeutralIncrement, onBadIncrement }) => (
   <>
     <h2>Please leave feedback</h2>
     <button
       type="button"
       onClick={() => {
-        onIncrement();
+        onGoodIncrement();
         console.log('Good');
       }}
     >
@@ -15,7 +15,7 @@ const Controls = ({ onIncrement }) => (
     <button
       type="button"
       onClick={() => {
-        onIncrement();
+        onNeutralIncrement();
         console.log('Neutral');
       }}
     >
@@ -24,7 +24,7 @@ const Controls = ({ onIncrement }) => (
     <button
       type="button"
       onClick={() => {
-        onIncrement();
+        onBadIncrement();
         console.log('Bad');
       }}
     >

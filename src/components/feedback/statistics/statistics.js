@@ -6,6 +6,10 @@ const Statistics = ({ good, neutral, bad }) => (
     <span>Good: {good}</span>
     <span>Neutral: {neutral}</span>
     <span>Bad: {bad}</span>
+    <span>Total: {good + neutral + bad}</span>
+    <span>
+      Positive feedback: {Math.round((100 / (good + neutral + bad)) * good)}%
+    </span>
   </>
 );
 

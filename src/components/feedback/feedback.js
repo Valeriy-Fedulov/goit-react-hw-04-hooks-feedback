@@ -1,6 +1,6 @@
 import React from 'react';
-import Controls from './controls/controls';
-import Statistics from './statistics/statistics';
+import Controls from './controls';
+import Statistics from './statistics';
 
 class Feedback extends React.Component {
   static defaultProps = {
@@ -11,21 +11,49 @@ class Feedback extends React.Component {
     good: this.props.initialValue,
     neutral: this.props.initialValue,
     bad: this.props.initialValue,
+    total: 0,
+    positivePercentage: 0,
   };
 
-  hahdleIncrement = () => {
+  goodIncrement = () => {
     this.setState(prevState => ({
       good: prevState.good + 1,
     }));
   };
 
+  neutralIncrement = () => {
+    this.setState(prevState => ({
+      neutral: prevState.neutral + 1,
+    }));
+  };
+
+  badIncrement = () => {
+    this.setState(prevState => ({
+      bad: prevState.bad + 1,
+    }));
+  };
+
+  countTotalFeedback = () => {};
+
+  countPositiveFeedbackPercentage = () => {};
+
   render() {
-    const { good, neutral, bad } = this.state;
+    const { good, neutral, bad, total, positivePercentage } = this.state;
 
     return (
       <div>
-        <Controls onIncrement={this.hahdleIncrement} />
-        <Statistics good={good} neutral={neutral} bad={bad} />
+        <Controls
+          onGoodIncrement={this.goodIncrement}
+          onNeutralIncrement={this.neutralIncrement}
+          onBadIncrement={this.badIncrement}
+        />
+        <Statistics
+          good={good}
+          neutral={neutral}
+          bad={bad}
+          total={total}
+          positivePercentage={positivePercentage}
+        />
       </div>
     );
   }
