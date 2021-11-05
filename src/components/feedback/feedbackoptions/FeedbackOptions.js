@@ -1,28 +1,31 @@
 import React from 'react';
 
-const Controls = ({ onGoodIncrement, onNeutralIncrement, onBadIncrement }) => (
+const Controls = ({ onLeaveFeedback }) => (
   <>
     <h2>Please leave feedback</h2>
     <button
+      id="good"
       type="button"
-      onClick={() => {
-        onGoodIncrement();
+      onClick={e => {
+        onLeaveFeedback(e);
       }}
     >
       Good
     </button>
     <button
+      id="neutral"
       type="button"
-      onClick={() => {
-        onNeutralIncrement();
+      onClick={e => {
+        onLeaveFeedback(e);
       }}
     >
       Neutral
     </button>
     <button
+      id="bad"
       type="button"
-      onClick={() => {
-        onBadIncrement();
+      onClick={e => {
+        onLeaveFeedback(e);
       }}
     >
       Bad

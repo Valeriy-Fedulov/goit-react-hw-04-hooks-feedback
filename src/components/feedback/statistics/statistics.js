@@ -12,5 +12,3 @@ const Statistics = ({ good, neutral, bad, total, positivePercentage }) => (
 );
 
 export default Statistics;
-
-// Math.round((100 / (good + neutral + bad)) * good)%

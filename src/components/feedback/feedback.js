@@ -1,61 +1,58 @@
 import React from 'react';
-import Controls from './controls';
+import FeedbackOptions from './feedbackoptions';
 import Statistics from './statistics';
 
 class Feedback extends React.Component {
-  static defaultProps = {
-    initialValue: 0,
-  };
-
   state = {
-    good: this.props.initialValue,
-    neutral: this.props.initialValue,
-    bad: this.props.initialValue,
-    total: this.props.initialValue,
-    positivePercentage: this.props.initialValue,
+    good: 0,
+    neutral: 0,
+    bad: 0,
+    total: 0,
+    positivePercentage: 0,
   };
 
-  goodIncrement = () => {
-    this.setState(prevState => ({
-      good: prevState.good + 1,
-    }));
-    this.percentageIncrement();
+  onLeaveFeedback = e => {
+    e.preventDefault();
+
+    e.target.id === 'good' &&
+      this.setState(prevState => ({
+        good: prevState.good + 1,
+      }));
+
+    e.target.id === 'neutral' &&
+      this.setState(prevState => ({
+        neutral: prevState.neutral + 1,
+      }));
+
+    e.target.id === 'bad' &&
+      this.setState(prevState => ({
+        bad: prevState.bad + 1,
+      }));
+
+    this.countTotalFeedback();
+    this.countPositiveFeedbackPercentage();
   };
 
-  neutralIncrement = () => {
-    this.setState(prevState => ({
-      neutral: prevState.neutral + 1,
-    }));
-    this.percentageIncrement();
+  countTotalFeedback = () => {
+    // this.setState(prevState => ({
+    //   total: prevState.good + prevState.neutral + prevState.bad,
+    // }));
+    return this.state.good + this.state.neutral + this.state.bad;
   };
 
-  badIncrement = () => {
+  countPositiveFeedbackPercentage = () => {
     this.setState(prevState => ({
-      bad: prevState.bad + 1,
+      positivePercentage: Math.round((100 / prevState.total) * prevState.good),
     }));
-    this.percentageIncrement();
   };
-
-  percentageIncrement() {
-    this.setState(prevState => ({
-      total: prevState.good + prevState.neutral + prevState.bad,
-    }));
-  }
-
-  countTotalFeedback = () => {};
-
-  countPositiveFeedbackPercentage = () => {};
 
   render() {
-    const { good, neutral, bad, total, positivePercentage } = this.state;
-
+    const { good, neutral, bad, positivePercentage } = this.state;
+    const total = this.countTotalFeedback();
+    console.log(total);
     return (
       <div>
-        <Controls
-          onGoodIncrement={this.goodIncrement}
-          onNeutralIncrement={this.neutralIncrement}
-          onBadIncrement={this.badIncrement}
-        />
+        <FeedbackOptions onLeaveFeedback={this.onLeaveFeedback} />
         <Statistics
           good={good}
           neutral={neutral}
