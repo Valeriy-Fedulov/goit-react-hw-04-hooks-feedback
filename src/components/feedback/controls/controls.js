@@ -7,7 +7,6 @@ const Controls = ({ onGoodIncrement, onNeutralIncrement, onBadIncrement }) => (
       type="button"
       onClick={() => {
         onGoodIncrement();
-        console.log('Good');
       }}
     >
       Good
@@ -16,7 +15,6 @@ const Controls = ({ onGoodIncrement, onNeutralIncrement, onBadIncrement }) => (
       type="button"
       onClick={() => {
         onNeutralIncrement();
-        console.log('Neutral');
       }}
     >
       Neutral
@@ -25,7 +23,6 @@ const Controls = ({ onGoodIncrement, onNeutralIncrement, onBadIncrement }) => (
       type="button"
       onClick={() => {
         onBadIncrement();
-        console.log('Bad');
       }}
     >
       Bad

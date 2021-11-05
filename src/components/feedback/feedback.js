@@ -11,27 +11,36 @@ class Feedback extends React.Component {
     good: this.props.initialValue,
     neutral: this.props.initialValue,
     bad: this.props.initialValue,
-    total: 0,
-    positivePercentage: 0,
+    total: this.props.initialValue,
+    positivePercentage: this.props.initialValue,
   };
 
   goodIncrement = () => {
     this.setState(prevState => ({
       good: prevState.good + 1,
     }));
+    this.percentageIncrement();
   };
 
   neutralIncrement = () => {
     this.setState(prevState => ({
       neutral: prevState.neutral + 1,
     }));
+    this.percentageIncrement();
   };
 
   badIncrement = () => {
     this.setState(prevState => ({
       bad: prevState.bad + 1,
     }));
+    this.percentageIncrement();
   };
+
+  percentageIncrement() {
+    this.setState(prevState => ({
+      total: prevState.good + prevState.neutral + prevState.bad,
+    }));
+  }
 
   countTotalFeedback = () => {};
 

@@ -1,16 +1,16 @@
 import React from 'react';
 
-const Statistics = ({ good, neutral, bad }) => (
+const Statistics = ({ good, neutral, bad, total, positivePercentage }) => (
   <>
     <h2>Statistics</h2>
     <span>Good: {good}</span>
     <span>Neutral: {neutral}</span>
     <span>Bad: {bad}</span>
-    <span>Total: {good + neutral + bad}</span>
-    <span>
-      Positive feedback: {Math.round((100 / (good + neutral + bad)) * good)}%
-    </span>
+    <span>Total: {total}</span>
+    <span>Positive feedback: {positivePercentage}%</span>
   </>
 );
 
 export default Statistics;
+
+// Math.round((100 / (good + neutral + bad)) * good)%
