@@ -1,8 +1,8 @@
 import './App.css';
-import Feedback from './components/feedback/feedback';
+import Feedback from './components/feedback/Feedback';
 
 function App() {
-  return <Feedback initialValue={0} />;
+  return <Feedback />;
 }
 
 export default App;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Section } from './section';
 import { FeedbackOptions } from './feedbackoptions';
 import { Statistics } from './statistics';
 
@@ -11,21 +12,7 @@ class Feedback extends React.Component {
 
   onLeaveFeedback = e => {
     e.preventDefault();
-
-    e.target.id === 'Good' &&
-      this.setState(prevState => ({
-        good: prevState.good + 1,
-      }));
-
-    e.target.id === 'Neutral' &&
-      this.setState(prevState => ({
-        neutral: prevState.neutral + 1,
-      }));
-
-    e.target.id === 'Bad' &&
-      this.setState(prevState => ({
-        bad: prevState.bad + 1,
-      }));
+    this.setState({ [e.target.id]: this.state[e.target.id] + 1 });
   };
 
   countTotalFeedback = () => {
@@ -40,19 +27,23 @@ class Feedback extends React.Component {
     const { good, neutral, bad } = this.state;
 
     return (
-      <div>
-        <FeedbackOptions
-          options={['Good', 'Neutral', 'Bad']}
-          onLeaveFeedback={this.onLeaveFeedback}
-        />
-        <Statistics
-          good={good}
-          neutral={neutral}
-          bad={bad}
-          total={this.countTotalFeedback()}
-          positivePercentage={this.countPositiveFeedbackPercentage()}
-        />
-      </div>
+      <>
+        <Section title="Please leave feedback">
+          <FeedbackOptions
+            options={['good', 'neutral', 'bad']}
+            onLeaveFeedback={this.onLeaveFeedback}
+          />
+        </Section>
+        <Section title="Statistics">
+          <Statistics
+            good={good}
+            neutral={neutral}
+            bad={bad}
+            total={this.countTotalFeedback()}
+            positivePercentage={this.countPositiveFeedbackPercentage()}
+          />
+        </Section>
+      </>
     );
   }
 }
