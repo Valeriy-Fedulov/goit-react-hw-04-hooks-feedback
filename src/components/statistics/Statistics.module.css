@@ -1,0 +1,10 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  font-style: italic;
+}
+
+span {
+  margin-bottom: 10px;
+}
