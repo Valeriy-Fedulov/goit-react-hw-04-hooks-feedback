@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const FeedbackOptions = props => (
   <>
     {props.options.map(option => (
@@ -14,5 +16,9 @@ const FeedbackOptions = props => (
     ))}
   </>
 );
+
+FeedbackOptions.propTypes = {
+  options: PropTypes.arrayOf(PropTypes.string.isRequired),
+};
 
 export { FeedbackOptions };
