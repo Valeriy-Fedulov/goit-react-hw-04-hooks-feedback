@@ -13,7 +13,7 @@ class App extends React.Component {
 
   onLeaveFeedback = e => {
     e.preventDefault();
-    this.setState({ [e.target.id]: this.state[e.target.id] + 1 });
+    this.setState(prevState => ({ [e.target.id]: prevState[e.target.id] + 1 }));
   };
 
   countTotalFeedback = () => {
