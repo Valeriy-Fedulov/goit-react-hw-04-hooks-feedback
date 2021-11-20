@@ -11,9 +11,21 @@ function App() {
 
   function onLeaveFeedback(e) {
     e.preventDefault();
-    e.target.id === 'good' && setGood(prevGood => prevGood + 1);
-    e.target.id === 'neutral' && setNeutral(prevNeutral => prevNeutral + 1);
-    e.target.id === 'bad' && setBad(prevBad => prevBad + 1);
+    const { id } = e.target;
+
+    switch (id) {
+      case 'good':
+        setGood(prevGood => prevGood + 1);
+        break;
+      case 'neutral':
+        setNeutral(prevNeutral => prevNeutral + 1);
+        break;
+      case 'bad':
+        setBad(prevBad => prevBad + 1);
+        break;
+      default:
+        console.log(id);
+    }
   }
 
   function countTotalFeedback() {
